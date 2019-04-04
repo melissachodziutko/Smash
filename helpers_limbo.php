@@ -45,15 +45,24 @@ function show_lost_records($dbc) {
 		  mysqli_free_result( $results ) ;
     }
 }
-
-
-
 function change_status($dbc, $id, $status)
 {
     $query = 'UPDATE stuff SET item_status ="' . $status . '" WHERE id=' . $id;
     #show_query($query);
     $results = mysqli_query($dbc,$query) ;
 }
+
+
+function insert_record($dbc, $id, $bid, $update, $buyer) {
+  $query = 'UPDATE smash SET bid ="' . $bid . '", update_date ="' . $update . '", buyer_name' . $buyer . '" WHERE id=' . $id;
+  show_query($query);
+	$results = mysqli_query($dbc,$query) ;
+		check_results($results) ;
+  return $results ;
+}
+
+
+
 
 # Shows the query as a debugging aid
 function show_query($query) {
@@ -88,4 +97,3 @@ function valid_status($item_status) {
         return true;
 }
 ?>
-
